@@ -1,10 +1,16 @@
 # Codex Nock
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 Local-first phone notifications for Codex task completion.
 
 Codex Nock is a tiny CLI that receives a Codex notification event and forwards a privacy-safe alert to your phone or desktop. It starts with one job: let me know when Codex is done, failed, or waiting for approval.
 
 It does not require GitHub, a hosted backend, or any Python dependencies.
+
+## Preview
+
+![Codex Nock desktop popup preview](docs/assets/desktop-popup.svg)
 
 ## What It Sends
 
