@@ -1,0 +1,22 @@
+# Copy to:
+#   Windows: %APPDATA%\codex-nock\config.toml
+#   macOS/Linux: ~/.config/codex-nock/config.toml
+
+[notify]
+provider = "ntfy"
+project_name = "my-project"
+timeout_seconds = 10
+
+[privacy]
+mode = "minimal"
+max_body_chars = 500
+include_raw_event = false
+
+[providers.ntfy]
+url = "https://ntfy.sh"
+topic_env = "CODEX_NOCK_NTFY_TOPIC"
+priority = "default"
+
+[providers.desktop]
+fullscreen = true
+auto_close_seconds = 0

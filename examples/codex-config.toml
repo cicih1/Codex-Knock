@@ -1,0 +1,4 @@
+# Add this to your Codex config.toml after installing Codex Nock.
+# Replace the Python path if your launcher is different.
+
+notify = ["python", "-m", "codex_nock", "notify"]
