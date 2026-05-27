@@ -1,20 +1,38 @@
-# Codex Nock
+# Codex Knock
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 Local-first phone notifications for Codex task completion.
 
-Codex Nock is a tiny CLI that receives a Codex notification event and forwards a privacy-safe alert to your phone or desktop. It starts with one job: let me know when Codex is done, failed, or waiting for approval.
+Codex Knock is a tiny CLI that receives a Codex notification event and forwards a privacy-safe alert to your phone or desktop. It starts with one job: let me know when Codex is done, failed, or waiting for approval.
+
+It is not a desktop pet. It is a minimal Codex notification bridge: it only appears when Codex finishes, fails, or needs your attention.
 
 It does not require GitHub, a hosted backend, or any Python dependencies.
 
+## Why
+
+Long AI coding runs are perfect attention traps. You switch away for "just a minute", open a video, check a message, and suddenly the task finished quietly twenty minutes ago.
+
+Codex Knock is the little knock on the door that brings you back at the right moment. It stays out of the way while Codex works, then shows a clear desktop alert or sends a phone notification when your attention is actually needed.
+
 ## Preview
 
-![Codex Nock desktop popup preview](docs/assets/desktop-popup.svg)
+![Codex Knock desktop popup preview](docs/assets/desktop-popup.svg)
+
+## Current Status
+
+`v0.1.1` is a desktop-popup-first MVP.
+
+- Default and locally verified: full-screen `desktop` popup
+- Implemented adapters: `ntfy`, `Bark`, `PushDeer`, `WxPusher`, Enterprise WeChat (`wecom`)
+- Not included yet: custom WeChat Mini Program, remote approval, hosted backend
+
+The extra notification providers are available for early users who already have those channels configured. The desktop popup is the recommended first setup.
 
 ## What It Sends
 
-By default, Codex Nock uses `privacy.mode = "minimal"` and sends only:
+By default, Codex Knock uses `privacy.mode = "minimal"` and sends only:
 
 - status
 - project name, if configured
@@ -32,7 +50,7 @@ It does not send prompts, source code, terminal output, or raw Codex event JSON 
 - `WxPusher`
 - Enterprise WeChat group robot (`wecom`)
 
-The simplest zero-account setup is `desktop`: Codex Nock opens a topmost local popup when Codex finishes. The simplest phone setup is usually `ntfy`: install the ntfy app on your phone, subscribe to a private topic, then set that topic locally.
+The simplest zero-account setup is `desktop`: Codex Knock opens a topmost local popup when Codex finishes. The simplest phone setup is usually `ntfy`: install the ntfy app on your phone, subscribe to a private topic, then set that topic locally.
 
 ## Install
 
@@ -40,33 +58,33 @@ From this folder:
 
 ```powershell
 python -m pip install -e .
-python -m codex_nock setup-desktop
+python -m codex_knock setup-desktop
 ```
 
-`setup-desktop` creates the Codex Nock config and updates your Codex config with:
+`setup-desktop` creates the Codex Knock config and updates your Codex config with:
 
 ```toml
-notify = ["python", "-m", "codex_nock", "notify"]
+notify = ["python", "-m", "codex_knock", "notify"]
 ```
 
-If your Codex config already exists, Codex Nock creates a timestamped backup before editing it.
+If your Codex config already exists, Codex Knock creates a timestamped backup before editing it.
 
 Preview changes without writing files:
 
 ```powershell
-python -m codex_nock setup-desktop --dry-run
+python -m codex_knock setup-desktop --dry-run
 ```
 
 On Windows the default config path is:
 
 ```text
-%APPDATA%\codex-nock\config.toml
+%APPDATA%\codex-knock\config.toml
 ```
 
 On macOS/Linux:
 
 ```text
-~/.config/codex-nock/config.toml
+~/.config/codex-knock/config.toml
 ```
 
 ## Configure Desktop Popup
@@ -89,7 +107,7 @@ auto_close_seconds = 0
 Then test without sending anything over the network:
 
 ```powershell
-python -m codex_nock test
+python -m codex_knock test
 ```
 
 The popup closes with Enter, Space, or Esc. Set `auto_close_seconds = 10` if you want it to disappear by itself.
@@ -121,13 +139,13 @@ Set the topic as a local environment variable:
 Open a new terminal and test:
 
 ```powershell
-python -m codex_nock test
+python -m codex_knock test
 ```
 
 Use `--dry-run` to print the notification instead of sending it:
 
 ```powershell
-python -m codex_nock test --dry-run
+python -m codex_knock test --dry-run
 ```
 
 ## Connect Codex
@@ -135,10 +153,10 @@ python -m codex_nock test --dry-run
 `setup-desktop` handles this automatically. If you prefer to configure Codex manually, add this to the top level of your Codex config, before any `[section]` headers:
 
 ```toml
-notify = ["python", "-m", "codex_nock", "notify"]
+notify = ["python", "-m", "codex_knock", "notify"]
 ```
 
-Codex Nock accepts event JSON as either a command argument or stdin, so it works with both common hook styles.
+Codex Knock accepts event JSON as either a command argument or stdin, so it works with both common hook styles.
 
 ## Privacy Modes
 

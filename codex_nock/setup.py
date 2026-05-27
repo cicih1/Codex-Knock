@@ -9,7 +9,8 @@ from pathlib import Path
 from .config import default_config_path
 
 
-CODEX_NOTIFY_LINE = 'notify = ["python", "-m", "codex_nock", "notify"]'
+CODEX_NOTIFY_LINE = 'notify = ["python", "-m", "codex_knock", "notify"]'
+LEGACY_CODEX_NOTIFY_LINE = 'notify = ["python", "-m", "codex_nock", "notify"]'
 
 
 @dataclass(frozen=True)
@@ -31,7 +32,7 @@ def default_codex_config_path() -> Path:
 
 def desktop_config(project_name: str, fullscreen: bool = True, auto_close_seconds: int = 0) -> str:
     fullscreen_value = "true" if fullscreen else "false"
-    return f"""# Codex Nock config.
+    return f"""# Codex Knock config.
 # This file is safe by default: it does not send prompts, code, or terminal output.
 
 [notify]

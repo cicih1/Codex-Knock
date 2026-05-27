@@ -1,6 +1,6 @@
 # Copy to:
-#   Windows: %APPDATA%\codex-nock\config.toml
-#   macOS/Linux: ~/.config/codex-nock/config.toml
+#   Windows: %APPDATA%\codex-knock\config.toml
+#   macOS/Linux: ~/.config/codex-knock/config.toml
 
 [notify]
 provider = "ntfy"

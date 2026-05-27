@@ -26,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="codex-nock", description="Send phone notifications for Codex events.")
+    parser = argparse.ArgumentParser(prog="codex-knock", description="Send phone notifications for Codex events.")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     subparsers = parser.add_subparsers(dest="command")
 
@@ -36,13 +36,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     test = subparsers.add_parser("test", help="Send a test notification.")
     add_common_args(test)
-    test.add_argument("--message", default="Codex Nock test notification.", help="Test message body.")
+    test.add_argument("--message", default="Codex Knock test notification.", help="Test message body.")
 
     init = subparsers.add_parser("init", help="Create an example config file.")
     init.add_argument("--path", default=str(default_config_path()), help="Config file path to create.")
 
-    setup_desktop = subparsers.add_parser("setup-desktop", help="Configure Codex Nock and Codex for desktop popups.")
-    setup_desktop.add_argument("--config", default=str(default_config_path()), help="Codex Nock config path to write.")
+    setup_desktop = subparsers.add_parser("setup-desktop", help="Configure Codex Knock and Codex for desktop popups.")
+    setup_desktop.add_argument("--config", default=str(default_config_path()), help="Codex Knock config path to write.")
     setup_desktop.add_argument("--codex-config", default=str(default_codex_config_path()), help="Codex config.toml path to update.")
     setup_desktop.add_argument("--project", default="Codex", help="Project name shown in notifications.")
     setup_desktop.add_argument("--dry-run", action="store_true", help="Preview paths and changes without writing files.")
@@ -84,15 +84,15 @@ def setup_desktop_command(args: argparse.Namespace) -> int:
             dry_run=args.dry_run,
         )
     except OSError as exc:
-        print(f"codex-nock: {exc}", file=sys.stderr)
+        print(f"codex-knock: {exc}", file=sys.stderr)
         return 1
 
     action = "Would write" if args.dry_run else "Wrote"
     unchanged = "would keep" if args.dry_run else "kept"
-    print(f"{action if result.nock_config_changed else unchanged.capitalize()} Codex Nock config: {result.nock_config_path}")
+    print(f"{action if result.nock_config_changed else unchanged.capitalize()} Codex Knock config: {result.nock_config_path}")
     print(f"{action if result.codex_config_changed else unchanged.capitalize()} Codex config: {result.codex_config_path}")
     if result.nock_backup_path:
-        print(f"Codex Nock backup: {result.nock_backup_path}")
+        print(f"Codex Knock backup: {result.nock_backup_path}")
     if result.codex_backup_path:
         print(f"Codex backup: {result.codex_backup_path}")
     if args.dry_run:
@@ -118,12 +118,12 @@ def notify_command(args: argparse.Namespace, event: dict | None = None) -> int:
             dry_run=args.dry_run,
         )
     except (OSError, ValueError, NotifyError, json.JSONDecodeError) as exc:
-        print(f"codex-nock: {exc}", file=sys.stderr)
+        print(f"codex-knock: {exc}", file=sys.stderr)
         return 1
 
     if args.dry_run or result.provider == "stdout":
         if config_path:
             print(f"\nConfig: {config_path}")
         return 0
-    print(f"codex-nock: notification {result.detail} via {result.provider}")
+    print(f"codex-knock: notification {result.detail} via {result.provider}")
     return 0

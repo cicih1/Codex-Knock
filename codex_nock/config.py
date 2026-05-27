@@ -42,6 +42,14 @@ def default_config_path() -> Path:
     if platform.system() == "Windows":
         appdata = os.environ.get("APPDATA")
         if appdata:
+            return Path(appdata) / "codex-knock" / "config.toml"
+    return Path.home() / ".config" / "codex-knock" / "config.toml"
+
+
+def legacy_config_path() -> Path:
+    if platform.system() == "Windows":
+        appdata = os.environ.get("APPDATA")
+        if appdata:
             return Path(appdata) / "codex-nock" / "config.toml"
     return Path.home() / ".config" / "codex-nock" / "config.toml"
 
@@ -52,8 +60,11 @@ def candidate_config_paths() -> list[Path]:
     if env_path:
         paths.append(Path(env_path).expanduser())
     paths.append(Path.cwd() / "codex-nock.toml")
+    paths.append(Path.cwd() / "codex-knock.toml")
     paths.append(default_config_path())
+    paths.append(legacy_config_path())
     paths.append(Path.home() / ".codex-nock.toml")
+    paths.append(Path.home() / ".codex-knock.toml")
     return paths
 
 
@@ -92,7 +103,7 @@ def create_example_config(path: str | Path) -> Path:
     return target
 
 
-EXAMPLE_CONFIG = """# Codex Nock config.
+EXAMPLE_CONFIG = """# Codex Knock config.
 # Keep secrets in environment variables whenever possible.
 
 [notify]

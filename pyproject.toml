@@ -3,14 +3,14 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "codex-nock"
-version = "0.1.0"
-description = "Local-first phone notifications for Codex task completion."
+name = "codex-knock"
+version = "0.1.1"
+description = "Local-first desktop and phone notifications for Codex task completion."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-  { name = "Codex Nock contributors" }
+  { name = "Codex Knock contributors" }
 ]
 keywords = ["codex", "notifications", "ntfy", "bark", "pushdeer", "wxpusher"]
 classifiers = [
@@ -25,7 +25,8 @@ classifiers = [
 dependencies = []
 
 [project.scripts]
+codex-knock = "codex_knock.cli:main"
 codex-nock = "codex_nock.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["codex_nock*"]
+include = ["codex_knock*", "codex_nock*"]

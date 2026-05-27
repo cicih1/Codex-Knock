@@ -1,6 +1,6 @@
 # Security Policy
 
-Codex Nock is local-first and privacy-minimal by default. The default desktop setup does not send prompts, source code, terminal output, or raw Codex event JSON over the network.
+Codex Knock is local-first and privacy-minimal by default. The default desktop setup does not send prompts, source code, terminal output, or raw Codex event JSON over the network.
 
 ## Reporting a Vulnerability
 
@@ -14,12 +14,12 @@ Use environment variables for provider secrets whenever possible.
 
 ## Configuration Changes
 
-`codex-nock setup-desktop` updates two local files:
+`codex-knock setup-desktop` updates two local files:
 
-- the Codex Nock config file
+- the Codex Knock config file
 - the Codex `config.toml`
 
-If either file already exists and would change, Codex Nock creates a timestamped backup before writing.
+If either file already exists and would change, Codex Knock creates a timestamped backup before writing.
 
 ## Network Providers
 

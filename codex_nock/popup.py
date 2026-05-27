@@ -7,7 +7,7 @@ from tkinter import font
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Show a local Codex Nock desktop popup.")
+    parser = argparse.ArgumentParser(description="Show a local Codex Knock desktop popup.")
     parser.add_argument("--title", default="Codex task finished")
     parser.add_argument("--body", default="")
     parser.add_argument("--timeout", type=int, default=0, help="Auto-close after N seconds. 0 keeps it open.")
