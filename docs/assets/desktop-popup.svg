@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Nock desktop popup preview</title>
+  <desc id="desc">A full-screen dark desktop popup with a green status bar and centered task completion text.</desc>
+  <rect width="1600" height="900" fill="#101418"/>
+  <rect width="1600" height="12" fill="#12b981"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <text x="800" y="378" fill="#f8fafc" font-size="58" font-weight="700">Codex task finished</text>
+    <text x="800" y="455" fill="#d7e0ea" font-size="30">Status: completed</text>
+    <text x="800" y="495" fill="#d7e0ea" font-size="30">Project: Codex</text>
+    <text x="800" y="535" fill="#d7e0ea" font-size="30">Time: 2026-05-28 00:15:51</text>
+    <text x="800" y="845" fill="#93a4b5" font-size="16">Press Enter, Space, or Esc to close</text>
+  </g>
+</svg>
